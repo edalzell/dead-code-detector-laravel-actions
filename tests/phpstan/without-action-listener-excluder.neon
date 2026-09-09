@@ -1,0 +1,15 @@
+includes:
+    - base.neon
+
+services:
+    -
+        class: Edalzell\DeadCodeDetector\Actions\LaravelActionsUsageProvider
+        tags:
+            - shipmonk.deadCode.memberUsageProvider
+    -
+        class: Edalzell\DeadCodeDetector\Actions\LaravelActionsRunUsageProvider
+        tags:
+            - shipmonk.deadCode.memberUsageProvider
+
+parameters:
+    tmpDir: %currentWorkingDirectory%/build/phpstan-fixtures/without-action-listener-excluder

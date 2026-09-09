@@ -1,0 +1,6 @@
+includes:
+    - base.neon
+    - ../../extension.neon
+
+parameters:
+    tmpDir: %currentWorkingDirectory%/build/phpstan-fixtures/all

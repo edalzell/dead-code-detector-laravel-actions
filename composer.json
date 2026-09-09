@@ -1,0 +1,64 @@
+{
+    "name": "edalzell/dead-code-detector-laravel-actions",
+    "description": "PHPStan extensions teaching shipmonk/dead-code-detector about lorisleiva/laravel-actions",
+    "license": "MIT",
+    "keywords": [
+        "Erin Dalzell",
+        "dead-code-detector",
+        "laravel-actions",
+        "phpstan",
+        "static analysis"
+    ],
+    "authors": [
+        {
+            "name": "Erin Dalzell",
+            "email": "erin@silentz.co",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/edalzell/dead-code-detector-laravel-actions",
+    "require": {
+        "php": "^8.2",
+        "phpstan/phpstan": "^2.0",
+        "shipmonk/dead-code-detector": "^1.4"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.14",
+        "lorisleiva/laravel-actions": "^2.12",
+        "pestphp/pest": "^3.0 || ^4.0"
+    },
+    "suggest": {
+        "lorisleiva/laravel-actions": "Needed for LaravelActionsUsageProvider, LaravelActionsRunUsageProvider and ActionListenerUsageExcluder to match anything"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Edalzell\\DeadCodeDetector\\Actions\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Edalzell\\DeadCodeDetector\\Actions\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint",
+        "test": "vendor/bin/pest"
+    }
+}

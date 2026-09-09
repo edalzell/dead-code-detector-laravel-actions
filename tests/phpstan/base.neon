@@ -1,0 +1,19 @@
+includes:
+    - ../../vendor/shipmonk/dead-code-detector/rules.neon
+
+parameters:
+    level: 0
+    paths:
+        - ../Fixtures
+    shipmonkDeadCode:
+        usageProviders:
+            laravel:
+                enabled: true
+            eloquent:
+                enabled: false
+        detect:
+            deadConstants: false
+            deadEnumCases: false
+            deadProperties:
+                neverRead: false
+                neverWritten: false

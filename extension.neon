@@ -1,0 +1,13 @@
+services:
+    -
+        class: Edalzell\DeadCodeDetector\Actions\LaravelActionsUsageProvider
+        tags:
+            - shipmonk.deadCode.memberUsageProvider
+    -
+        class: Edalzell\DeadCodeDetector\Actions\LaravelActionsRunUsageProvider
+        tags:
+            - shipmonk.deadCode.memberUsageProvider
+    -
+        class: Edalzell\DeadCodeDetector\Actions\ActionListenerUsageExcluder
+        tags:
+            - shipmonk.deadCode.memberUsageExcluder
