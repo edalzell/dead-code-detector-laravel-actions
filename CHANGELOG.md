@@ -2,6 +2,12 @@
 
 All notable changes to `dead-code-detector-laravel-actions` will be documented in this file.
 
+## v0.1.0 - 2026-09-11
+
+### 🚀 New
+
+- Mark handle() used on entrypoint Actions [@edalzell](https://github.com/edalzell) (#3)
+
 ## v0.0.1 - 2026-09-09
 
 * No changes
