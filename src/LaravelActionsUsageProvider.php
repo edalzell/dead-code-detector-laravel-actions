@@ -22,8 +22,24 @@ final class LaravelActionsUsageProvider extends ReflectionBasedMemberUsageProvid
         'jsonResponse', 'prepareForValidation', 'rules', 'withValidator',
     ];
 
+    // The decorators that make an Action an entrypoint. Each falls back to `handle()`
+    // when its `asX` adapter is absent, and the thing that reaches it — a route, the
+    // scheduler, the queue, the dispatcher — names the class, never the method.
+    // `AsAction` composes all four but is deliberately not listed: a class that says
+    // it is everything gives no signal about how it is reached.
+    private const ENTRYPOINT_TRAITS = [
+        'Lorisleiva\\Actions\\Concerns\\AsCommand',
+        'Lorisleiva\\Actions\\Concerns\\AsController',
+        'Lorisleiva\\Actions\\Concerns\\AsJob',
+        'Lorisleiva\\Actions\\Concerns\\AsListener',
+    ];
+
     public function shouldMarkMethodAsUsed(ReflectionMethod $method): ?VirtualUsageData
     {
+        if ($method->getName() === 'handle' && $this->isEntrypoint($method->getDeclaringClass())) {
+            return VirtualUsageData::withNote('laravel-actions reaches handle() through an entrypoint decorator.');
+        }
+
         if (! in_array($method->getName(), self::REFLECTIVELY_CALLED, true)) {
             return null;
         }
@@ -35,6 +51,14 @@ final class LaravelActionsUsageProvider extends ReflectionBasedMemberUsageProvid
         }
 
         return VirtualUsageData::withNote('laravel-actions resolves this method by name through its decorators.');
+    }
+
+    /**
+     * @param  ReflectionClass<object>  $class
+     */
+    private function isEntrypoint(ReflectionClass $class): bool
+    {
+        return array_intersect($class->getTraitNames(), self::ENTRYPOINT_TRAITS) !== [];
     }
 
     /**

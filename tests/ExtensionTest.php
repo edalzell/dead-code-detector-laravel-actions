@@ -8,7 +8,7 @@ it('reports only the uncalled Action when every extension is registered', functi
 
 it('reports reflectively called Action hooks without LaravelActionsUsageProvider', function () {
     expect(Analysis::deadMembers('without-laravel-actions'))
-        ->toBe(['ArchivePark::handle', 'UpdateProfile::authorize', 'UpdateProfile::rules']);
+        ->toBe(['ArchivePark::handle', 'PruneParks::handle', 'UpdateProfile::authorize', 'UpdateProfile::rules']);
 });
 
 it('reports handle() of Actions called via run() without LaravelActionsRunUsageProvider', function () {
