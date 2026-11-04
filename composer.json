@@ -25,7 +25,7 @@
     "require-dev": {
         "laravel/pint": "^1.14",
         "lorisleiva/laravel-actions": "^2.12",
-        "pestphp/pest": "^3.0 || ^4.0"
+        "pestphp/pest": "^5.3.5"
     },
     "suggest": {
         "lorisleiva/laravel-actions": "Needed for LaravelActionsUsageProvider, LaravelActionsRunUsageProvider and ActionListenerUsageExcluder to match anything"
